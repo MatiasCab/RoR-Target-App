@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '~> 3.1.2'
+ruby '~> 3.2.2'
 
 gem 'rails', '~> 7.0.4.3'
 
@@ -24,6 +24,7 @@ gem 'sass-rails', '~> 6.0.0'
 gem 'sendgrid', '~> 1.2.4'
 gem 'sprockets', '~> 3.7.2'
 gem 'yaaf', '~> 2.2'
+gem 'wdm', '>= 0.1.0' if Gem.win_platform?
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
@@ -40,6 +41,7 @@ group :development, :test do
   gem 'pry-rails', '~> 0.3.9'
   gem 'rspec_api_documentation', '~> 6.1.0'
   gem 'rspec-rails', '~> 4.1'
+  gem 'byebug'
 end
 
 group :development do

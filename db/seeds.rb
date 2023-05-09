@@ -9,3 +9,4 @@ Topic.create(name: "Study", image: "----")
 Topic.create(name: "Food", image: "----")
 Topic.create(name: "Animals", image: "----")
 Topic.create(name: "Places", image: "----")
+

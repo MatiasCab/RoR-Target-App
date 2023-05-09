@@ -28,9 +28,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
+        uses: ruby/setup-ruby@v1.x
         with:
           bundler-cache: true
+          ruby-version: 3.2.2
       - name: Setup Code Climate test-reporter
         run: |
           curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter

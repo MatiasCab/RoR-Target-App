@@ -1,8 +1,8 @@
 class CreateTopics < ActiveRecord::Migration[7.0]
   def change
     create_table :topics do |t|
-      t.string :name
-      t.string :image
+      t.string :name, null: false, unique: true
+      t.string :image, null: false
 
       t.timestamps
     end

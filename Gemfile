@@ -40,7 +40,6 @@ group :development, :test do
   gem 'pry-rails', '~> 0.3.9'
   gem 'rspec_api_documentation', '~> 6.1.0'
   gem 'rspec-rails', '~> 4.1'
-  gem 'wdm', '>= 0.1.0' if Gem.win_platform?
 end
 
 group :development do
@@ -55,6 +54,7 @@ group :development do
   gem 'rubocop-rails', '~> 2.16', '>= 2.16.1', require: false
   gem 'rubocop-rootstrap', '~> 1.2'
   gem 'spring', '~> 4.0'
+  gem 'wdm', '>= 0.1.0' if Gem.win_platform?
 end
 
 group :test do

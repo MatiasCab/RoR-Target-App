@@ -18,6 +18,9 @@ Rails.application.routes.draw do
       resources :settings, only: [] do
         get :must_update, on: :collection
       end
+
+
+      resources :targets, only: [:create]
     end
   end
 end

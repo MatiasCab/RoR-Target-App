@@ -27,8 +27,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      - name: Unset deployment mode
-        run: bundle config unset deployment
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:

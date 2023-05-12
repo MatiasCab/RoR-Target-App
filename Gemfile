@@ -55,7 +55,7 @@ group :development do
   gem 'rubocop-rails', '~> 2.16', '>= 2.16.1', require: false
   gem 'rubocop-rootstrap', '~> 1.2'
   gem 'spring', '~> 4.0'
-  gem 'wdm', '>= 0.1.0' if Gem.win_platform?
+  #gem 'wdm', '>= 0.1.0', platform: :win32 if Gem.win_platform?
 end
 
 group :test do

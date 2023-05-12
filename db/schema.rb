@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_05_200553) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_12_152736) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
   enable_extension "plpgsql"
@@ -110,12 +110,20 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_05_200553) do
     t.index ["key"], name: "index_settings_on_key", unique: true
   end
 
+  create_table "topics", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "image", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_topics_on_name", unique: true
+  end
+
   create_table "users", id: :serial, force: :cascade do |t|
     t.string "email"
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at", precision: nil
-    t.boolean "allow_password_change", default: false
+    t.boolean "allow_password_change", default: false, null: false
     t.integer "sign_in_count", default: 0, null: false
     t.datetime "current_sign_in_at", precision: nil
     t.datetime "last_sign_in_at", precision: nil

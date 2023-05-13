@@ -9,7 +9,7 @@ class CreateTargets < ActiveRecord::Migration[7.0]
       t.references :topic, foreign_key: true, null: false
 
       t.timestamps
-      t.check_constraint :radius_positive, "(radius > 0)"
+      t.check_constraint('radius > 0', name: 'radius_positive')
     end
   end
 end

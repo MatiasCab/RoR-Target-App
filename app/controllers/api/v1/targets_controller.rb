@@ -6,6 +6,10 @@ module Api
         @target = TargetService.new(current_user, resource_params).call
       end
 
+      def index
+        @targets = policy_scope(current_user.targets)
+      end
+
       def resource_params
         params.require(:target).permit(:title, :lat, :lng, :radius, :topic_id)
       end

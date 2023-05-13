@@ -11,6 +11,6 @@ class TargetService
   private
 
   def targets
-    @targets ||= @current_user.targets
+    targets ||= @current_user.targets
   end
 end

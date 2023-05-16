@@ -4,7 +4,7 @@ class TargetService
     @params = params
   end
 
-  def create
+  def create!
     targets.create!(@params)
   end
 

@@ -35,3 +35,4 @@ Rails/LexicallyScopedActionFilter:
 Layout/EndOfLine:
   Exclude:
     -  spec\models\target_spec.rb
+    

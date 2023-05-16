@@ -27,11 +27,11 @@ describe 'POST api/v1/targets', type: :request do
 
     it 'returns a successful response' do
       subject
-      expect(response).to have_http_status(:success)
+      expect(response).to be_successful
     end
 
     it 'creates the target' do
-      expect { subject }.to change(Target, :count).by(1)
+      expect { subject }.to change(Target, :count).from(0).to(1)
     end
 
     it 'returns the target' do
@@ -44,7 +44,7 @@ describe 'POST api/v1/targets', type: :request do
     end
 
     context 'when the topic id is not correct' do
-      let(:topic_id)      { 'invalid_topic_id' }
+      let(:topic_id) { 'invalid_topic_id' }
 
       it 'does not create a target' do
         expect { subject }.not_to change { Target.count }
@@ -57,8 +57,8 @@ describe 'POST api/v1/targets', type: :request do
     end
 
     context 'when the latitude or longitude is incorrect' do
-      let(:lat)           { 'invalid_lat' }
-      let(:lng)           { 'invalid_lng' }
+      let(:lat) { 'invalid_lat' }
+      let(:lng) { 'invalid_lng' }
 
       it 'does not create a target' do
         expect { subject }.not_to change { Target.count }
@@ -71,7 +71,7 @@ describe 'POST api/v1/targets', type: :request do
     end
 
     context 'when radius is incorrect' do
-      let(:radius)        { 'invalid_lng' }
+      let(:radius) { 'invalid_radius' }
 
       it 'does not create a target' do
         expect { subject }.not_to change { Target.count }

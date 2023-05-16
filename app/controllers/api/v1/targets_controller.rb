@@ -3,7 +3,7 @@ module Api
     class TargetsController < Api::V1::ApiController
       def create
         authorize Target
-        @target = TargetService.new(current_user, resource_params).call
+        @target = TargetService.new(current_user, resource_params).create!
       end
 
       def index

@@ -44,7 +44,7 @@ describe 'POST api/v1/targets', type: :request do
     end
 
     context 'when the user has reached the maximum number of targets' do
-      let!(:user_targets)  { create_list(:target, 3, user: user) }
+      let!(:user_targets)  { create_list(:target, 3, user:) }
 
       it 'does not create a target' do
         expect { subject }.not_to change { Target.count }

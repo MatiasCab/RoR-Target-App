@@ -1,0 +1,2 @@
+class Sala < StandardError
+end

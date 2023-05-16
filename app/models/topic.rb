@@ -13,6 +13,7 @@
 #  index_topics_on_name  (name) UNIQUE
 #
 class Topic < ApplicationRecord
+  has_many :targets, dependent: :destroy
   validates :name, presence: true, uniqueness: { case_sensitive: false }
   validates :image, presence: true
 end

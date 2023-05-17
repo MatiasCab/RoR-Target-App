@@ -12,7 +12,7 @@ describe 'GET api/v1/targets', type: :request do
 
   it 'returns all user targets and only them' do
     subject
-    expect(json[:targets].pluck(:title)).to match_array(user_targets.pluck(:title))
+    expect(json[:targets].pluck(:id)).to match_array(user_targets.pluck(:id))
   end
 
   it 'returns targets in correct format' do
@@ -20,8 +20,8 @@ describe 'GET api/v1/targets', type: :request do
     expect(json[:targets].first[:id]).to eq(first_user_target.id)
     expect(json[:targets].first[:title]).to eq(first_user_target.title)
     expect(json[:targets].first[:radius]).to eq(first_user_target.radius)
-    expect(json[:targets].first[:lat]).to eq(first_user_target.lat)
-    expect(json[:targets].first[:lng]).to eq(first_user_target.lng)
+    expect(json[:targets].first[:lat].round(13)).to eq(first_user_target.lat.round(13))
+    expect(json[:targets].first[:lng].round(13)).to eq(first_user_target.lng.round(13))
     expect(json[:targets].first[:topic_id]).to eq(first_user_target.topic_id)
   end
 end

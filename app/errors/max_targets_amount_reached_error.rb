@@ -1,0 +1,2 @@
+class MaxTargetsAmountReachedError < StandardError
+end

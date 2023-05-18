@@ -1,2 +1,0 @@
-class Sala < StandardError
-end

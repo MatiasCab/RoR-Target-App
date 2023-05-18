@@ -1,7 +1,7 @@
 describe 'POST api/v1/targets', type: :request do
-  let!(:user)           { create(:user) }
+  let(:user)            { create(:user) }
   let(:topic)           { create(:topic) }
-  let(:last_target)     { Target.last }
+  let(:target)          { Target.last }
   let(:failed_response) { 400 }
 
   describe 'POST create' do
@@ -27,20 +27,21 @@ describe 'POST api/v1/targets', type: :request do
 
     it 'returns a successful response' do
       subject
-      expect(response).to have_http_status(:success)
+      expect(response).to be_successful
     end
 
     it 'creates the target' do
-      expect { subject }.to change(Target, :count).by(1)
+      expect { subject }.to change(Target, :count).from(0).to(1)
     end
 
     it 'returns the target' do
       subject
-      expect(json[:target][:title]).to eq(last_target.title)
-      expect(json[:target][:radius]).to eq(last_target.radius)
-      expect(json[:target][:lat]).to eq(last_target.lat)
-      expect(json[:target][:lng]).to eq(last_target.lng)
-      expect(json[:target][:topic_id]).to eq(last_target.topic_id)
+      expect(json[:target][:id]).to eq(target.id)
+      expect(json[:target][:title]).to eq(target.title)
+      expect(json[:target][:radius]).to eq(target.radius)
+      expect(json[:target][:lat]).to eq(target.lat)
+      expect(json[:target][:lng]).to eq(target.lng)
+      expect(json[:target][:topic_id]).to eq(target.topic_id)
     end
 
     context 'when the user has reached the maximum number of targets' do
@@ -57,7 +58,7 @@ describe 'POST api/v1/targets', type: :request do
     end
 
     context 'when the topic id is not correct' do
-      let(:topic_id)      { 'invalid_topic_id' }
+      let(:topic_id) { 'invalid_topic_id' }
 
       it 'does not create a target' do
         expect { subject }.not_to change { Target.count }
@@ -70,8 +71,8 @@ describe 'POST api/v1/targets', type: :request do
     end
 
     context 'when the latitude or longitude is incorrect' do
-      let(:lat)           { 'invalid_lat' }
-      let(:lng)           { 'invalid_lng' }
+      let(:lat) { 'invalid_lat' }
+      let(:lng) { 'invalid_lng' }
 
       it 'does not create a target' do
         expect { subject }.not_to change { Target.count }
@@ -84,7 +85,7 @@ describe 'POST api/v1/targets', type: :request do
     end
 
     context 'when radius is incorrect' do
-      let(:radius)        { 'invalid_lng' }
+      let(:radius) { 'invalid_radius' }
 
       it 'does not create a target' do
         expect { subject }.not_to change { Target.count }

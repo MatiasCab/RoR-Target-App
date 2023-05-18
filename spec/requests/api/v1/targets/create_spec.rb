@@ -36,6 +36,7 @@ describe 'POST api/v1/targets', type: :request do
 
     it 'returns the target' do
       subject
+      expect(json[:target][:id]).to eq(target.id)
       expect(json[:target][:title]).to eq(target.title)
       expect(json[:target][:radius]).to eq(target.radius)
       expect(json[:target][:lat]).to eq(target.lat)

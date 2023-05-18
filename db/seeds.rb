@@ -3,6 +3,8 @@ Setting.create_or_find_by!(key: 'min_version', value: '0.0')
 
 User.create!(first_name: 'Matias', last_name: 'Cabrera', email: 'matias@gmail.com',
              password: '12345678')
+User.create!(first_name: 'User_2', last_name: 'User_2', email: 'user_2@gmail.com',
+             password: '12345678')
 
 Topic.create!(name: 'Sports', image: '----')
 Topic.create!(name: 'Music', image: '----')

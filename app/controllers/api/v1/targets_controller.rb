@@ -8,8 +8,6 @@ module Api
       def create
         authorize Target
         @target = TargetService.new(current_user, resource_params).create!
-      rescue MaxTargetsAmountReachedError
-        render_error(:bad_request, I18n.t('api.errors.maximum_targets_reached'))
       end
 
       def resource_params

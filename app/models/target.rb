@@ -24,4 +24,13 @@ class Target < ApplicationRecord
   validates :title, presence: true
   validates :radius, presence: true, numericality: { greater_than: 0 }
   validates :lat, :lng, presence: true, numericality: true
+  validate  :max_target_amount_reached, unless: -> { user.nil? }
+
+  MAX_TARGETS_AMOUNT = ENV.fetch('TARGET_CREATION_LIMIT', '3').to_i
+
+  private
+  
+  def max_target_amount_reached
+    errors.add(:user, I18n.t('api.errors.maximum_targets_reached')) unless user.targets.count < MAX_TARGETS_AMOUNT
+  end
 end

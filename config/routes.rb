@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
       resources :topics, only: [:index]
 
-      resources :targets, only: %i[index create]
+      resources :targets, only: %i[index create destroy]
     end
   end
 end

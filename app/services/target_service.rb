@@ -8,6 +8,10 @@ class TargetService
     targets.create!(@params)
   end
 
+  def destroy!
+    targets.find(@params).destroy!
+  end
+
   private
 
   def targets

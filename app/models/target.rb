@@ -29,8 +29,11 @@ class Target < ApplicationRecord
   MAX_TARGETS_AMOUNT = ENV.fetch('TARGET_CREATION_LIMIT', '3').to_i
 
   private
-  
+
   def max_target_amount_reached
-    errors.add(:user, I18n.t('api.errors.maximum_targets_reached')) unless user.targets.count < MAX_TARGETS_AMOUNT
+    return if user.targets.count < MAX_TARGETS_AMOUNT
+
+    errors.add(:user,
+               I18n.t('api.errors.maximum_targets_reached'))
   end
 end

@@ -8,5 +8,6 @@ en:
   api:
     errors:
       invalid_content_type: Invalid content type header
+      maximum_targets_reached: You have reached the maximum number of targets
       missing_param: A required param is missing
       not_found: Couldn't find the record

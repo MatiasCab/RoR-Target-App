@@ -26,7 +26,7 @@ describe 'DELETE api/v1/targets/{id}', type: :request do
     expect(json[:target][:topic_id]).to eq(first_user_target.topic_id)
   end
 
-  context 'when the user don\'t have the target' do
+  context 'when target do not belongs to current user' do
     let(:id) { other_targets.first.id }
 
     it 'does not delete a target' do

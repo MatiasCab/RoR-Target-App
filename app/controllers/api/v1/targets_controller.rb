@@ -7,20 +7,16 @@ module Api
 
       def create
         authorize Target
-        @target = TargetService.new(current_user, create_resource_params).create!
+        @target = current_user.targets.create!(resource_params)
       end
 
       def destroy
         authorize Target
-        @target = TargetService.new(current_user, delete_resource_params).destroy!
+        @target = current_user.targets.find(params[:id]).destroy!
       end
 
-      def create_resource_params
+      def resource_params
         params.require(:target).permit(:title, :lat, :lng, :radius, :topic_id)
-      end
-
-      def delete_resource_params
-        params.require(:id)
       end
     end
   end

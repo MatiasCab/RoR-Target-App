@@ -7,7 +7,8 @@ module Api
 
       def create
         authorize Target
-        @target = current_user.targets.create!(resource_params)
+        #@target = current_user.targets.create!(resource_params)
+        @target = CreateTargetService.new(current_user, resource_params).create!
       end
 
       def destroy

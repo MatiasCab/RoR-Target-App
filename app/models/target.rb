@@ -18,6 +18,8 @@
 #  index_targets_on_user_id   (user_id)
 #
 class Target < ApplicationRecord
+  acts_as_mappable
+
   belongs_to :topic
   belongs_to :user
 
@@ -28,6 +30,13 @@ class Target < ApplicationRecord
 
   MAX_TARGETS_AMOUNT = ENV.fetch('TARGET_CREATION_LIMIT', '3').to_i
 
+  scope :mached_targets, -> (target) { 
+    where(topic: target.topic)
+      .where.not(user: target.user)
+      .within(target.radius, origin: target)
+      #.select { |t| t.radius >= t.distance_from(target) } #no me gusta mucho
+  }
+
   private
 
   def max_target_amount_reached
@@ -35,5 +44,11 @@ class Target < ApplicationRecord
 
     errors.add(:user,
                I18n.t('api.errors.maximum_targets_reached'))
+  end
+
+  def distance
+    puts self.radius
+    true
+    #puts Geokit::LatLng.distance_between([target.lat, target.lng], [self.lat, self.lng])
   end
 end

@@ -10,10 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_25_171415) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_02_031557) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
   enable_extension "plpgsql"
+  enable_extension "postgis"
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -110,9 +111,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_25_171415) do
   end
 
   create_table "match_users_conversations", force: :cascade do |t|
-    t.bigint "user_id", null: false
     t.bigint "target_id", null: false
     t.bigint "conversation_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["conversation_id"], name: "index_match_users_conversations_on_conversation_id"
@@ -133,6 +134,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_25_171415) do
     t.float "radius", null: false
     t.float "lat", null: false
     t.float "lng", null: false
+    t.boolean "matched", default: false, null: false
     t.bigint "user_id", null: false
     t.bigint "topic_id", null: false
     t.datetime "created_at", null: false

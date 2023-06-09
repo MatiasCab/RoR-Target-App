@@ -3,9 +3,9 @@
 # Table name: match_users_conversations
 #
 #  id              :bigint           not null, primary key
-#  user_id         :bigint           not null
 #  target_id       :bigint           not null
 #  conversation_id :bigint           not null
+#  user_id         :bigint           not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #
@@ -17,6 +17,8 @@
 #
 FactoryBot.define do
   factory :match_users_conversation do
-    
+    association :user, factory: :user
+    association :conversation, factory: :conversation
+    association :target, factory: :target
   end
 end

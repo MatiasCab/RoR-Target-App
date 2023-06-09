@@ -13,6 +13,6 @@
 #
 FactoryBot.define do
   factory :conversation do
-    
+    association :topic, factory: :topic
   end
 end

@@ -7,6 +7,7 @@
 #  radius     :float            not null
 #  lat        :float            not null
 #  lng        :float            not null
+#  matched    :boolean          default(FALSE), not null
 #  user_id    :bigint           not null
 #  topic_id   :bigint           not null
 #  created_at :datetime         not null
@@ -18,23 +19,31 @@
 #  index_targets_on_user_id   (user_id)
 #
 class Target < ApplicationRecord
-  acts_as_mappable
 
   belongs_to :topic
   belongs_to :user
 
+  has_one :match_users_conversation, dependent: :destroy
+  has_one :conversation, through: :match_users_conversation
+
   validates :title, presence: true
   validates :radius, presence: true, numericality: { greater_than: 0 }
   validates :lat, :lng, presence: true, numericality: true
-  validate  :max_target_amount_reached, unless: -> { user.nil? }
+  validate  :max_target_amount_reached, unless: -> { user.nil? }, on: :create
 
   MAX_TARGETS_AMOUNT = ENV.fetch('TARGET_CREATION_LIMIT', '3').to_i
 
-  scope :mached_targets, -> (target) { 
-    where(topic: target.topic)
-      .where.not(user: target.user)
-      .within(target.radius, origin: target)
-      #.select { |t| t.radius >= t.distance_from(target) } #no me gusta mucho
+  scope :by_topic, -> (topic) { where(topic: topic) }
+  scope :not_same_user, -> (user) { where.not(user: user) }
+  scope :inside_their_radius, -> (lng, lat) { where('targets.radius >= ST_Distance(ST_MakePoint(targets.lng, targets.lat)::geography, ST_MakePoint(?, ?)::geography)', lng, lat) }
+  scope :inside_this_radius, -> (radius, lng, lat) { where("ST_DWithin(ST_MakePoint(targets.lng, targets.lat)::geography, ST_MakePoint(?, ?)::geography, ?)", lng, lat, radius) }
+  scope :not_matched, -> { where(matched: false) }
+  scope :mached_targets, -> (target) {
+    inside_this_radius(target.radius, target.lng, target.lat)
+      .by_topic(target.topic)
+      .not_same_user(target.user)
+      .inside_their_radius(target.lng, target.lat)
+      .not_matched
   }
 
   private
@@ -44,11 +53,5 @@ class Target < ApplicationRecord
 
     errors.add(:user,
                I18n.t('api.errors.maximum_targets_reached'))
-  end
-
-  def distance
-    puts self.radius
-    true
-    #puts Geokit::LatLng.distance_between([target.lat, target.lng], [self.lat, self.lng])
   end
 end

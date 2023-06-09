@@ -1,2 +1,0 @@
-class MaxTargetsAmountReachedError < StandardError
-end

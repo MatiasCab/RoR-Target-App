@@ -3,9 +3,9 @@
 # Table name: match_users_conversations
 #
 #  id              :bigint           not null, primary key
-#  user_id         :bigint           not null
 #  target_id       :bigint           not null
 #  conversation_id :bigint           not null
+#  user_id         :bigint           not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #
@@ -17,6 +17,6 @@
 #
 class MatchUsersConversation < ApplicationRecord
     belongs_to :conversation
-    belongs_to :target
+    belongs_to :target    
     belongs_to :user
 end

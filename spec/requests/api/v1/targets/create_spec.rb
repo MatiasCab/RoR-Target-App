@@ -25,23 +25,27 @@ describe 'POST api/v1/targets', type: :request do
       }
     end
 
-    it 'returns a successful response' do
-      subject
-      expect(response).to be_successful
-    end
+    context 'when the user has not match' do
+      it 'returns a successful response' do
+        subject
+        expect(response).to be_successful
+      end
 
-    it 'creates the target' do
-      expect { subject }.to change(Target, :count).from(0).to(1)
-    end
+      it 'creates the target' do
+        expect { subject }.to change(user.targets, :count).from(0).to(1)
+      end
 
-    it 'returns the target' do
-      subject
-      expect(json[:target][:id]).to eq(target.id)
-      expect(json[:target][:title]).to eq(target.title)
-      expect(json[:target][:radius]).to eq(target.radius)
-      expect(json[:target][:lat]).to eq(target.lat)
-      expect(json[:target][:lng]).to eq(target.lng)
-      expect(json[:target][:topic_id]).to eq(target.topic_id)
+      it 'returns the target' do
+        subject
+        expect(json[:target][:id]).to eq(target.id)
+        expect(json[:target][:title]).to eq(target.title)
+        expect(json[:target][:radius]).to eq(target.radius)
+        expect(json[:target][:matched]).to eq(false)
+        expect(json[:target][:lat].round(12)).to eq(target.lat.round(12))
+        expect(json[:target][:lng].round(12)).to eq(target.lng.round(12))
+        expect(json[:target][:topic_id]).to eq(target.topic_id)
+        expect(json[:target][:matched_user]).to eq(nil)
+      end
     end
 
     context 'when the user has reached the maximum number of targets' do
@@ -94,6 +98,32 @@ describe 'POST api/v1/targets', type: :request do
       it 'does not return a successful response' do
         subject
         expect(response.status).to eq(failed_response)
+      end
+    end
+
+    context 'when the user make a match' do
+      let!(:other_user)        { create(:user) }
+      let!(:other_user_target) { create(:target, user: other_user, topic_id: , lat:, lng:) }
+
+      it 'returns a successful response' do
+        subject
+        expect(response).to be_successful
+      end
+
+      it 'creates the target' do
+        expect { subject }.to change(user.targets, :count).from(0).to(1)
+      end
+
+      it 'returns the matched target' do
+        subject
+        expect(json[:target][:id]).to eq(target.id)
+        expect(json[:target][:title]).to eq(target.title)
+        expect(json[:target][:radius]).to eq(target.radius)
+        expect(json[:target][:matched]).to eq(true)
+        expect(json[:target][:lat].round(12)).to eq(target.lat.round(12))
+        expect(json[:target][:lng].round(12)).to eq(target.lng.round(12))
+        expect(json[:target][:topic_id]).to eq(target.topic_id)
+        expect(json[:target][:matched_user]).to eq(other_user.full_name)
       end
     end
   end

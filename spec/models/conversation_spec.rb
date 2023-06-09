@@ -14,5 +14,8 @@
 require 'rails_helper'
 
 RSpec.describe Conversation, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'validations' do
+    subject { build :conversation }
+    it { is_expected.to belong_to(:topic) }
+  end
 end

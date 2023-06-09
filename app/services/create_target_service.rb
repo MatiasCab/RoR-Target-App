@@ -19,11 +19,25 @@ class CreateTargetService
     end
 
     def check_matchs(new_target)
-        targets = Target.mached_targets(new_target)
-        targets.each do |target|
-          conversation = Conversation.create!(topic_id: target.topic_id)
-          MatchUsersConversation.create!(conversation_id: conversation.id, target_id: new_target.id, user_id: @current_user.id)
-          MatchUsersConversation.create!(conversation_id: conversation.id, target_id: target.id, user_id: target.user_id)
+        matched_targets = Target.mached_targets(new_target)
+        matched_target = nil
+        matched_targets.each do |target|
+          conversation = Conversation.conversation_between_users(new_target.user, target.user).first
+          if conversation.nil?
+            matched_target = target
+            break
+          end
         end
+
+        return if matched_target.nil?
+
+        conversation = Conversation.conversation_between_users(new_target.user, matched_target.user).first
+
+        matched_target.update!(matched: true)
+        new_target.update!(matched: true)
+        
+        conversation = Conversation.create!(topic_id: matched_target.topic_id)
+        MatchUsersConversation.create!(conversation_id: conversation.id, target_id: new_target.id, user_id: new_target.user.id)
+        MatchUsersConversation.create!(conversation_id: conversation.id, target_id: matched_target.id, user_id: matched_target.user.id)
     end
   end

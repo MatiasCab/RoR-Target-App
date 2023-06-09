@@ -4,6 +4,7 @@ ruby '~> 3.2.2'
 gem 'rails', '~> 7.0.4.3'
 
 gem 'activeadmin', '~> 2.9'
+gem 'activerecord-postgis-adapter'
 gem 'active_storage_base64', '~> 2.0.0'
 gem 'arctic_admin', '~> 3.3.0'
 gem 'aws-sdk-s3', '~> 1.75', require: false
@@ -20,13 +21,12 @@ gem 'pg', '~> 1.1', '>= 1.1.4'
 gem 'puma', '~> 5.6'
 gem 'pundit', '~> 2.1'
 gem 'rack-cors', '~> 1.0', '>= 1.0.6'
+gem 'rgeo'
+gem 'rgeo-activerecord'
 gem 'sass-rails', '~> 6.0.0'
 gem 'sendgrid', '~> 1.2.4'
 gem 'sprockets', '~> 3.7.2'
 gem 'yaaf', '~> 2.2'
-gem 'activerecord-postgis-adapter'
-gem 'rgeo'
-gem 'rgeo-activerecord'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password

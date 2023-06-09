@@ -6,12 +6,12 @@ describe 'DELETE api/v1/targets/{id}', type: :request do
   let(:id)                  { first_user_target.id }
   subject { delete api_v1_target_path(id:), headers: auth_headers, as: :json }
 
-  context 'when the target did not match' do 
+  context 'when the target did not match' do
     it 'returns a successful response' do
       subject
       expect(response).to be_successful
     end
-  
+
     it 'deletes the target' do
       expect { subject }.to change(user.targets, :count).by(-1)
     end
@@ -19,7 +19,7 @@ describe 'DELETE api/v1/targets/{id}', type: :request do
     it 'does not delete a conversation' do
       expect { subject }.not_to change { Conversation.count }
     end
-  
+
     it 'returns the deleted target in correct format' do
       subject
       expect(json[:target][:id]).to eq(first_user_target.id)
@@ -59,21 +59,21 @@ describe 'DELETE api/v1/targets/{id}', type: :request do
     end
   end
 
-  context 'when the target is matched' do 
+  context 'when the target is matched' do
     let!(:other_user)  { create(:user) }
     let(:match_target) { first_user_target }
-    
+
     include_context 'match target'
 
     it 'returns a successful response' do
       subject
       expect(response).to be_successful
     end
-  
+
     it 'deletes the target' do
       expect { subject }.to change(user.targets, :count).by(-1)
     end
-  
+
     it 'returns the deleted target in correct format' do
       subject
       expect(json[:target][:id]).to eq(first_user_target.id)

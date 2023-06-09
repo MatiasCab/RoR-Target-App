@@ -16,7 +16,7 @@
 #  index_match_users_conversations_on_user_id          (user_id)
 #
 class MatchUsersConversation < ApplicationRecord
-    belongs_to :conversation
-    belongs_to :target    
-    belongs_to :user
+  belongs_to :conversation
+  belongs_to :target
+  belongs_to :user
 end

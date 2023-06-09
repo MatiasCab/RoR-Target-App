@@ -8,9 +8,9 @@ module Api
       def create
         authorize Target
         @target = CreateTargetService.new(current_user, resource_params).create!
-        if @target.matched 
-          @user_match = @target.match_users_conversation.conversation.get_other_user(@target.user)
-        end
+        return unless @target.matched
+
+        @user_match = @target.match_users_conversation.conversation.get_other_user(@target.user)
       end
 
       def destroy

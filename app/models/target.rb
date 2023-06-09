@@ -19,7 +19,6 @@
 #  index_targets_on_user_id   (user_id)
 #
 class Target < ApplicationRecord
-
   belongs_to :topic
   belongs_to :user
 
@@ -33,12 +32,19 @@ class Target < ApplicationRecord
 
   MAX_TARGETS_AMOUNT = ENV.fetch('TARGET_CREATION_LIMIT', '3').to_i
 
-  scope :by_topic, -> (topic) { where(topic: topic) }
-  scope :not_same_user, -> (user) { where.not(user: user) }
-  scope :inside_their_radius, -> (lng, lat) { where('targets.radius >= ST_Distance(ST_MakePoint(targets.lng, targets.lat)::geography, ST_MakePoint(?, ?)::geography)', lng, lat) }
-  scope :inside_this_radius, -> (radius, lng, lat) { where("ST_DWithin(ST_MakePoint(targets.lng, targets.lat)::geography, ST_MakePoint(?, ?)::geography, ?)", lng, lat, radius) }
+  scope :by_topic, ->(topic) { where(topic:) }
+  scope :not_same_user, ->(user) { where.not(user:) }
+  scope :inside_their_radius, lambda { |lng, lat|
+                                where('targets.radius >= ST_Distance(
+                                       ST_MakePoint(targets.lng, targets.lat)::geography,
+                                       ST_MakePoint(?, ?)::geography)', lng, lat)
+                              }
+  scope :inside_this_radius, lambda { |radius, lng, lat|
+                               where('ST_DWithin(ST_MakePoint(targets.lng, targets.lat)::geography,
+                                      ST_MakePoint(?, ?)::geography, ?)', lng, lat, radius)
+                             }
   scope :not_matched, -> { where(matched: false) }
-  scope :mached_targets, -> (target) {
+  scope :mached_targets, lambda { |target|
     inside_this_radius(target.radius, target.lng, target.lat)
       .by_topic(target.topic)
       .not_same_user(target.user)

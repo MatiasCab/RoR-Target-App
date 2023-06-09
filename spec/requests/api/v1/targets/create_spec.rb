@@ -103,7 +103,7 @@ describe 'POST api/v1/targets', type: :request do
 
     context 'when the user make a match' do
       let!(:other_user)        { create(:user) }
-      let!(:other_user_target) { create(:target, user: other_user, topic_id: , lat:, lng:) }
+      let!(:other_user_target) { create(:target, user: other_user, topic_id:, lat:, lng:) }
 
       it 'returns a successful response' do
         subject

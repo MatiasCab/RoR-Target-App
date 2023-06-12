@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_02_031557) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_10_160622) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
   enable_extension "plpgsql"
@@ -121,6 +121,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_02_031557) do
     t.index ["user_id"], name: "index_match_users_conversations_on_user_id"
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.string "content", null: false
+    t.bigint "user_id", null: false
+    t.bigint "conversation_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["conversation_id"], name: "index_messages_on_conversation_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
   create_table "settings", force: :cascade do |t|
     t.string "key", null: false
     t.string "value"
@@ -182,6 +192,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_02_031557) do
   add_foreign_key "match_users_conversations", "conversations"
   add_foreign_key "match_users_conversations", "targets"
   add_foreign_key "match_users_conversations", "users"
+  add_foreign_key "messages", "conversations"
+  add_foreign_key "messages", "users"
   add_foreign_key "targets", "topics"
   add_foreign_key "targets", "users"
 end

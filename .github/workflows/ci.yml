@@ -39,7 +39,11 @@ jobs:
       - name: Setup Database
         run: |
           cp .github/test_db/config/database.yml config/database.yml
-          bundle exec rails db:create db:migrate
+          bundle exec rails db:create
+      - name: Install PostGIS
+        run: psql -U postgres -c "CREATE EXTENSION IF NOT EXISTS postgis;"
+      - name: Database migrations
+        run: bundle exec rails db:migrate
       - name: Check for untracked changes in schema.rb
         uses: rootstrap/check_untracked_changes@v1
         with:

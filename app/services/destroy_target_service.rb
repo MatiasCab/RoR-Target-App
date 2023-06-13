@@ -23,6 +23,6 @@ class DestroyTargetService
 
     other_target = target.conversation.get_other_target(target)
     other_target.update!(matched: false)
-    target.conversation.destroy!
+    # target.conversation.destroy!
   end
 end

@@ -1,20 +1,22 @@
 RSpec.shared_context 'match target' do
-  before do
-    title = 'match_test'
-    radius = 27_384.4
-    lat = match_target.lat
-    lng = match_target.lng
-    topic_id = match_target.topic_id
-    params = {
-      target: {
-        title:,
-        radius:,
-        lat:,
-        lng:,
-        topic_id:
-      }
-    }
+  let!(:other_user)     { create(:user) }
+  let!(:matched_target) do
+    create(:target,
+           user: other_user,
+           lat: first_user_target.lat,
+           lng: first_user_target.lng,
+           topic: first_user_target.topic,
+           matched: true)
+  end
+  let!(:conversation) { create(:conversation, topic: first_user_target.topic) }
+  let!(:user_conversation_instance) do
+    create(:match_users_conversation, user:, conversation:, target: first_user_target)
+  end
+  let!(:other_user_conversation_instance) do
+    create(:match_users_conversation, user: other_user, conversation:, target: matched_target)
+  end
 
-    post api_v1_targets_path, params:, headers: other_user.create_new_auth_token, as: :json
+  before do
+    first_user_target.update(matched: true)
   end
 end

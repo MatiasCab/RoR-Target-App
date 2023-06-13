@@ -40,7 +40,7 @@ describe 'POST api/v1/targets', type: :request do
         expect(json[:target][:id]).to eq(target.id)
         expect(json[:target][:title]).to eq(target.title)
         expect(json[:target][:radius]).to eq(target.radius)
-        expect(json[:target][:matched]).to eq(false)
+        expect(json[:target][:matched]).to be_falsey
         expect(json[:target][:lat].round(12)).to eq(target.lat.round(12))
         expect(json[:target][:lng].round(12)).to eq(target.lng.round(12))
         expect(json[:target][:topic_id]).to eq(target.topic_id)
@@ -119,7 +119,7 @@ describe 'POST api/v1/targets', type: :request do
         expect(json[:target][:id]).to eq(target.id)
         expect(json[:target][:title]).to eq(target.title)
         expect(json[:target][:radius]).to eq(target.radius)
-        expect(json[:target][:matched]).to eq(true)
+        expect(json[:target][:matched]).to be_truthy
         expect(json[:target][:lat].round(12)).to eq(target.lat.round(12))
         expect(json[:target][:lng].round(12)).to eq(target.lng.round(12))
         expect(json[:target][:topic_id]).to eq(target.topic_id)

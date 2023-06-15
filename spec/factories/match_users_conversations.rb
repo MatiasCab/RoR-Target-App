@@ -19,6 +19,6 @@ FactoryBot.define do
   factory :match_users_conversation do
     association :user, factory: :user
     association :conversation, factory: :conversation
-    association :target, factory: :target
+    target
   end
 end

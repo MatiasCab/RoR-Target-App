@@ -17,7 +17,7 @@
 FactoryBot.define do
   factory :message do
     content    { Faker::Lorem.sentence }
-    association :user, factory: :user
-    association :conversation, factory: :conversation
+    user
+    conversation
   end
 end

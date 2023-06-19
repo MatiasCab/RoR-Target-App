@@ -4,7 +4,7 @@ describe 'DELETE api/v1/targets/{id}', type: :request do
   let!(:other_targets)      { create_list(:target, 2) }
   let(:first_user_target)   { user_targets.first }
   let(:id)                  { first_user_target.id }
-  subject { delete api_v1_target_path(id:), headers: auth_headers, as:l :json }
+  subject { delete api_v1_target_path(id:), headers: auth_headers, as: :json }
 
   context 'when the target did not match' do
     it 'returns a successful response' do

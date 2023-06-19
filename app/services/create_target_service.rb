@@ -28,12 +28,13 @@ class CreateTargetService
     create_conversation(matched_target, new_target)
   end
 
-  def create_conversation(matched_target1, matched_target2)
-    conversation = Conversation.create!(topic_id: matched_target1.topic_id)
-    MatchUsersConversation.create!(conversation_id: conversation.id, target_id: matched_target2.id,
-                                   user_id: matched_target2.user.id)
-    MatchUsersConversation.create!(conversation_id: conversation.id,
-                                   target_id: matched_target1.id, user_id: matched_target1.user.id)
+  def create_conversation(matched_target_old, matched_target_new)
+    conversation = Conversation.create!(topic_id: matched_target_new.topic_id)
+    conversation_id = conversation.id
+    MatchUsersConversation.create!(conversation_id:, target_id: matched_target_new.id,
+                                   user_id: matched_target_new.user.id)
+    MatchUsersConversation.create!(conversation_id:, target_id: matched_target_old.id,
+                                   user_id: matched_target_old.user.id)
   end
 
   def find_target_to_match(new_target)

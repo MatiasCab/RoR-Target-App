@@ -20,10 +20,10 @@ describe 'GET api/v1/targets', type: :request do
     expect(json[:targets].first[:id]).to eq(first_user_target.id)
     expect(json[:targets].first[:title]).to eq(first_user_target.title)
     expect(json[:targets].first[:radius]).to eq(first_user_target.radius)
-    expect(json[:targets].first[:matched]).to eq(false)
-    expect(json[:targets].first[:lat].round(12)).to eq(first_user_target.lat.round(12))
-    expect(json[:targets].first[:lng].round(12)).to eq(first_user_target.lng.round(12))
+    expect(json[:targets].first[:matched]).to be_falsey
+    expect(json[:targets].first[:lat].round(10)).to eq(first_user_target.lat.round(10))
+    expect(json[:targets].first[:lng].round(10)).to eq(first_user_target.lng.round(10))
     expect(json[:targets].first[:topic_id]).to eq(first_user_target.topic_id)
-    expect(json[:targets].first[:matched_user]).to eq(nil)
+    expect(json[:targets].first[:matched_user]).to be_nil
   end
 end

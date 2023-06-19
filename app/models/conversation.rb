@@ -18,29 +18,8 @@ class Conversation < ApplicationRecord
   has_many :users, through: :match_users_conversations
   has_many :targets, through: :match_users_conversations
 
-  scope :conversation_between_users, lambda { |user1, user2|
-                                       joins(:users).where(users: { id: [user1.id, user2.id] })
+  scope :conversation_between_users, lambda { |base_user, matched_user|
+                                       joins(:users)
+                                         .where(users: { id: [base_user.id, matched_user.id] })
                                      }
-
-  def get_other_user(user)
-    return conversation_users.first if conversation_users.first.id != user.id
-
-    conversation_users.second
-  end
-
-  def get_other_target(target)
-    return conversation_targets.first if conversation_targets.first.id != target.id
-
-    conversation_targets.second
-  end
-
-  private
-
-  def conversation_users
-    @conversation_users ||= users
-  end
-
-  def conversation_targets
-    @conversation_targets ||= targets
-  end
 end

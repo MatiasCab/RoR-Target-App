@@ -10,7 +10,7 @@ module Api
         @target = CreateTargetService.new(current_user, resource_params).create!
         return unless @target.matched
 
-        @user_match = @target.match_users_conversation.conversation.get_other_user(@target.user)
+        @user_match = GetConversationDataService.new(@target).other_user
       end
 
       def destroy

@@ -21,28 +21,4 @@ class Conversation < ApplicationRecord
                                        joins(:users)
                                          .where(users: { id: [base_user.id, matched_user.id] })
                                      }
-
-  def get_other_user(user)
-    first_conversation_user = conversation_users.first
-    return first_conversation_user if first_conversation_user.id != user.id
-
-    conversation_users.second
-  end
-
-  def get_other_target(target)
-    first_conversation_target = conversation_targets.first
-    return first_conversation_target if first_conversation_target.id != target.id
-
-    conversation_targets.second
-  end
-
-  private
-
-  def conversation_users
-    @conversation_users ||= users
-  end
-
-  def conversation_targets
-    @conversation_targets ||= targets
-  end
 end

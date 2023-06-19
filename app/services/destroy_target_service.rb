@@ -21,7 +21,7 @@ class DestroyTargetService
   def check_if_matched(target)
     return unless target.matched
 
-    other_target = target.conversation.get_other_target(target)
+    other_target = GetConversationDataService.new(target).other_target
     other_target.update!(matched: false)
   end
 end

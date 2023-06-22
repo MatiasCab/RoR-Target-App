@@ -464,6 +464,7 @@ GEM
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
+    will_paginate (4.0.0)
     yaaf (2.2.0)
       activemodel (>= 5.2)
       activerecord (>= 5.2)
@@ -525,6 +526,7 @@ DEPENDENCIES
   uglifier (~> 4.2)
   wdm (>= 0.1.0)
   webmock (~> 3.7, >= 3.7.6)
+  will_paginate
   yaaf (~> 2.2)
 
 RUBY VERSION

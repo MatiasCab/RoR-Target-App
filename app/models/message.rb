@@ -19,4 +19,8 @@ class Message < ApplicationRecord
     belongs_to :user
     
     validates :content, presence: true
+
+    PAGINATION_LIMIT = ENV.fetch('PAGINATION_LIMIT', '10').to_i
+
+    self.per_page = PAGINATION_LIMIT
 end

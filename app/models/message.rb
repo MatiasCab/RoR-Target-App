@@ -22,5 +22,5 @@ class Message < ApplicationRecord
 
     PAGINATION_LIMIT = ENV.fetch('PAGINATION_LIMIT', '10').to_i
 
-    self.per_page = PAGINATION_LIMIT
+    paginates_per PAGINATION_LIMIT
 end

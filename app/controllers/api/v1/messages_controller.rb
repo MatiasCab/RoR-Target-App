@@ -2,7 +2,7 @@ module Api
     module V1
         class MessagesController <  Api::V1::ApiController
             def index
-                @messages = policy_scope(conversation_messages.paginate(page: params[:page], per_page: Message::PAGINATION_LIMIT))
+                @messages = policy_scope(policy_scope(conversation_messages.page(params[:page]).per(Message::PAGINATION_LIMIT)))
             end
 
             def create 

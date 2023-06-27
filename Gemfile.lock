@@ -472,7 +472,6 @@ GEM
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
-    will_paginate (4.0.0)
     yaaf (2.2.0)
       activemodel (>= 5.2)
       activerecord (>= 5.2)
@@ -505,6 +504,7 @@ DEPENDENCIES
   faker (~> 2.13)
   i18n-tasks (~> 0.9.30)
   jbuilder (~> 2.10)
+  kaminari
   letter_opener (~> 1.7)
   listen (~> 3.2)
   oj (~> 3.9, >= 3.9.2)
@@ -536,7 +536,6 @@ DEPENDENCIES
   uglifier (~> 4.2)
   wdm (>= 0.1.0)
   webmock (~> 3.7, >= 3.7.6)
-  will_paginate
   yaaf (~> 2.2)
 
 RUBY VERSION

@@ -28,6 +28,7 @@ gem 'sendgrid', '~> 1.2.4'
 gem 'sprockets', '~> 3.7.2'
 gem 'yaaf', '~> 2.2'
 gem 'will_paginate'
+gem 'rake'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
@@ -60,6 +61,7 @@ group :development do
   gem 'rubocop-rootstrap', '~> 1.2'
   gem 'spring', '~> 4.0'
   gem 'wdm', '>= 0.1.0', platforms: [:x64_mingw]
+  gem 'rufus-scheduler'
 end
 
 group :test do

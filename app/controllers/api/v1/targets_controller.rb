@@ -7,12 +7,15 @@ module Api
 
       def create
         authorize Target
-        @target = current_user.targets.create!(resource_params)
+        @target = CreateTargetService.new(current_user, resource_params).create!
+        return unless @target.matched?
+
+        @user_match = GetConversationDataService.new(@target).other_user
       end
 
       def destroy
         authorize Target
-        @target = current_user.targets.find(params[:id]).destroy!
+        @target = DestroyTargetService.new(current_user, params[:id]).destroy!
       end
 
       def resource_params

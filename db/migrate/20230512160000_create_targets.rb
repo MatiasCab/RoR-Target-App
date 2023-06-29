@@ -5,6 +5,7 @@ class CreateTargets < ActiveRecord::Migration[7.0]
       t.float :radius, null: false
       t.float :lat, null: false
       t.float :lng, null: false
+      t.boolean :matched, null: false, default: false
       t.references :user, foreign_key: true, null: false
       t.references :topic, foreign_key: true, null: false
 

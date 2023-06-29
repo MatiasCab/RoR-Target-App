@@ -127,3 +127,4 @@ detectors:
 exclude_paths:
   - config
   - db/migrate
+  - bin/bundler.rb

@@ -9,6 +9,7 @@
 #  radius     :float            not null
 #  lat        :float            not null
 #  lng        :float            not null
+#  matched    :boolean          default(FALSE), not null
 #  user_id    :bigint           not null
 #  topic_id   :bigint           not null
 #  created_at :datetime         not null

@@ -15,8 +15,8 @@
 #  index_messages_on_user_id          (user_id)
 #
 class Message < ApplicationRecord
-    belongs_to :conversation
-    belongs_to :user
-    
-    validates :content, presence: true
+  belongs_to :conversation
+  belongs_to :user
+
+  validates :content, presence: true
 end

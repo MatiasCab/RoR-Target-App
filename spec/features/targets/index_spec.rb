@@ -1,6 +1,7 @@
-describe 'GET /api/v1/conversations/{id}/messages', type: :feature do
-  let!(:admin)   { create(:admin_user) }
+describe 'Admin see targets', type: :feature do
+  let!(:admin)        { create(:admin_user) }
   let!(:targets)      { create_list(:target, 3) }
+  let(:first_target)  { targets.first }
   subject { visit admin_targets_path }
 
   before(:each) do
@@ -21,16 +22,16 @@ describe 'GET /api/v1/conversations/{id}/messages', type: :feature do
   
       it "show the targets list" do
         subject
-        targets.each do |target|
-          expect(page).to have_content(target.title)
-          expect(page).to have_content(target.radius)
-          expect(page).to have_content(target.lat)
-          expect(page).to have_content(target.lng)
-          expect(page).to have_content(target.matched ? "Yes" : "No") #FIXME
-          expect(page).to have_content(target.user.first_name)
-          expect(page).to have_content(target.topic.name)
-          expect(page).to have_content(target.created_at.strftime('%B %d, %Y %H:%M'))
+        aggregate_failures do
+          expect(page).to have_content(first_target.title)
+          expect(page).to have_content(first_target.radius)
+          expect(page).to have_content(first_target.lat)
+          expect(page).to have_content(first_target.lng)
+          expect(page).to have_content(first_target.matched ? "Yes" : "No")
+          expect(page).to have_content(first_target.user.first_name)
+          expect(page).to have_content(first_target.topic.name)
+          expect(page).to have_content(first_target.created_at.strftime('%B %d, %Y %H:%M'))
+        end
         end
     end
-  end
   

@@ -1,4 +1,4 @@
-describe 'Admin targets', type: :feature do
+describe 'Admin view target', type: :feature do
     let!(:admin)        { create(:admin_user) }
     let!(:targets)      { create_list(:target, 3) }
     let(:first_target)  { targets.first }
@@ -22,15 +22,17 @@ describe 'Admin targets', type: :feature do
   
     it "show the target" do
       subject
-      expect(page).to have_content(first_target.title) #FIXME aggregate_failures do (en el ultimo el end)
-      expect(page).to have_content(first_target.radius)
-      expect(page).to have_content(first_target.lat)
-      expect(page).to have_content(first_target.lng)
-      expect(page).to have_content(first_target.matched ? "Yes" : "No") #FIXME
-      expect(page).to have_content(first_target.user.first_name)
-      expect(page).to have_content(first_target.topic.name)
-      expect(page).to have_content(first_target.created_at.strftime('%B %d, %Y %H:%M'))
-      expect(page).to have_content(first_target.updated_at.strftime('%B %d, %Y %H:%M'))
+      aggregate_failures do
+        expect(page).to have_content(first_target.title)
+        expect(page).to have_content(first_target.radius)
+        expect(page).to have_content(first_target.lat)
+        expect(page).to have_content(first_target.lng)
+        expect(page).to have_content(first_target.matched ? "Yes" : "No") #FIXME
+        expect(page).to have_content(first_target.user.first_name)
+        expect(page).to have_content(first_target.topic.name)
+        expect(page).to have_content(first_target.created_at.strftime('%B %d, %Y %H:%M'))
+        expect(page).to have_content(first_target.updated_at.strftime('%B %d, %Y %H:%M'))
+      end
     end
   end
   

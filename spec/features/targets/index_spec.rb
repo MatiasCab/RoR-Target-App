@@ -1,6 +1,6 @@
-describe 'GET /api/v1/conversations/{id}/messages', type: :feature do
-  let!(:admin)   { create(:admin_user) }
-  let!(:targets)      { create_list(:target, 3) }
+describe 'GET /api/v1/conversations/{id}/messages', type: :feature do #FIXME
+  let!(:admin)    { create(:admin_user) }
+  let!(:targets)  { create_list(:target, 3) }
   subject { visit admin_targets_path }
 
   before(:each) do
@@ -21,7 +21,7 @@ describe 'GET /api/v1/conversations/{id}/messages', type: :feature do
   
       it "show the targets list" do
         subject
-        targets.each do |target|
+        targets.each do |target| #FIXME (SOLO EL PRIMERO)
           expect(page).to have_content(target.title)
           expect(page).to have_content(target.radius)
           expect(page).to have_content(target.lat)

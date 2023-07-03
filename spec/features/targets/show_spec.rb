@@ -1,5 +1,5 @@
 describe 'Admin targets', type: :feature do
-    let!(:admin)   { create(:admin_user) }
+    let!(:admin)        { create(:admin_user) }
     let!(:targets)      { create_list(:target, 3) }
     let(:first_target)  { targets.first }
     subject { visit admin_target_path(first_target.id) }
@@ -22,7 +22,7 @@ describe 'Admin targets', type: :feature do
   
     it "show the target" do
       subject
-      expect(page).to have_content(first_target.title)
+      expect(page).to have_content(first_target.title) #FIXME aggregate_failures do (en el ultimo el end)
       expect(page).to have_content(first_target.radius)
       expect(page).to have_content(first_target.lat)
       expect(page).to have_content(first_target.lng)

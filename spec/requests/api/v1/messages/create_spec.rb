@@ -5,7 +5,7 @@ describe 'POST /api/v1/conversations/{id}/messages', type: :request do
     let(:message)           { Message.last }
     let(:user_conversation) { user.conversations.first }
     let(:conversation_id)   { user_conversation.id }
-    let(:failed_response)   { 400 } #FIXME ORDER METHOD?
+    let(:failed_response)   { 400 }
     subject { post api_v1_conversation_messages_path(conversation_id:), params:, headers: auth_headers, as: :json }
 
     let(:content) { 'Test message content' }

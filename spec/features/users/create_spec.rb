@@ -7,7 +7,7 @@ describe 'Admin create user', type: :feature do
     before(:each) do
         sign_in(admin)
     end    
-        it "show the users list" do
+        it "create the user" do #FIXME Fijrse el ultimo usuario creado y los cambios en el modelo.
           subject
             fill_in 'Email', with: 'test@example.com'
             fill_in 'First name', with: 'test'

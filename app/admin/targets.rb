@@ -7,10 +7,12 @@ ActiveAdmin.register Target do
     end
   end
 
+  filter :topic
+
   index do
     id_column
     column :title
-    column "Radius (m)"do |target|
+    column "Radius (m)"do | target|
         target.radius
     end
     column :lat

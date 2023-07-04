@@ -15,6 +15,7 @@ gem 'devise_token_auth', '~> 1.2', git: 'https://github.com/lynndylanhurley/devi
 gem 'draper', '~> 4.0', '>= 4.0.1'
 gem 'exception_hunter', github: 'rootstrap/exception_hunter'
 gem 'jbuilder', '~> 2.10'
+gem 'kaminari'
 gem 'oj', '~> 3.9', '>= 3.9.2'
 gem 'pagy', '~> 4.0'
 gem 'pg', '~> 1.1', '>= 1.1.4'
@@ -27,7 +28,6 @@ gem 'sass-rails', '~> 6.0.0'
 gem 'sendgrid', '~> 1.2.4'
 gem 'sprockets', '~> 3.7.2'
 gem 'yaaf', '~> 2.2'
-gem 'kaminari'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password

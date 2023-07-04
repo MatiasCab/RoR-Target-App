@@ -15,6 +15,7 @@ gem 'devise_token_auth', '~> 1.2', git: 'https://github.com/lynndylanhurley/devi
 gem 'draper', '~> 4.0', '>= 4.0.1'
 gem 'exception_hunter', github: 'rootstrap/exception_hunter'
 gem 'jbuilder', '~> 2.10'
+gem 'kaminari'
 gem 'oj', '~> 3.9', '>= 3.9.2'
 gem 'pagy', '~> 4.0'
 gem 'pg', '~> 1.1', '>= 1.1.4'

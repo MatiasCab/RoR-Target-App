@@ -8,7 +8,7 @@ module Api
       def create
         authorize Target
         @target = CreateTargetService.new(current_user, resource_params).create!
-        return unless @target.matched
+        return unless @target.matched?
 
         @user_match = GetConversationDataService.new(@target).other_user
       end

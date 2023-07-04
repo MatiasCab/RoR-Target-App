@@ -13,6 +13,7 @@
 #
 class Conversation < ApplicationRecord
   belongs_to :topic
+  has_many :messages, dependent: :destroy
   has_many :match_users_conversations, dependent: :destroy
   has_many :users, through: :match_users_conversations
   has_many :targets, through: :match_users_conversations

@@ -22,6 +22,7 @@ gem 'pg', '~> 1.1', '>= 1.1.4'
 gem 'puma', '~> 5.6'
 gem 'pundit', '~> 2.1'
 gem 'rack-cors', '~> 1.0', '>= 1.0.6'
+gem 'rake'
 gem 'rgeo'
 gem 'rgeo-activerecord'
 gem 'sass-rails', '~> 6.0.0'
@@ -58,6 +59,7 @@ group :development do
   gem 'reek', '~> 6.1', '>= 6.1.1'
   gem 'rubocop-rails', '~> 2.16', '>= 2.16.1', require: false
   gem 'rubocop-rootstrap', '~> 1.2'
+  gem 'rufus-scheduler'
   gem 'spring', '~> 4.0'
   gem 'wdm', '>= 0.1.0', platforms: [:x64_mingw]
 end

@@ -180,6 +180,8 @@ GEM
       ruby2_keywords
     erubi (1.12.0)
     erubis (2.7.0)
+    et-orbi (1.2.7)
+      tzinfo
     execjs (2.8.1)
     factory_bot (5.2.0)
       activesupport (>= 4.2.0)
@@ -194,6 +196,9 @@ GEM
     formtastic (4.0.0)
       actionpack (>= 5.2.0)
     formtastic_i18n (0.7.0)
+    fugit (1.8.1)
+      et-orbi (~> 1, >= 1.2.7)
+      raabro (~> 1.4)
     globalid (1.1.0)
       activesupport (>= 5.0)
     has_scope (0.8.1)
@@ -297,6 +302,7 @@ GEM
       nio4r (~> 2.0)
     pundit (2.3.0)
       activesupport (>= 3.0.0)
+    raabro (1.4.0)
     racc (1.7.0)
     rack (2.2.7)
     rack-cors (1.1.1)
@@ -412,6 +418,8 @@ GEM
       rubocop (>= 0.72, < 2)
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
+    rufus-scheduler (3.9.1)
+      fugit (~> 1.1, >= 1.1.6)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
     sassc (2.4.0)
@@ -509,6 +517,7 @@ DEPENDENCIES
   rack-cors (~> 1.0, >= 1.0.6)
   rails (~> 7.0.4.3)
   rails_best_practices (~> 1.20)
+  rake
   reek (~> 6.1, >= 6.1.1)
   rgeo
   rgeo-activerecord
@@ -516,6 +525,7 @@ DEPENDENCIES
   rspec_api_documentation (~> 6.1.0)
   rubocop-rails (~> 2.16, >= 2.16.1)
   rubocop-rootstrap (~> 1.2)
+  rufus-scheduler
   sass-rails (~> 6.0.0)
   sendgrid (~> 1.2.4)
   shoulda-matchers (~> 4.1, >= 4.1.2)

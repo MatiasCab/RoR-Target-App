@@ -40,13 +40,13 @@ group :development, :test do
   gem 'annotate', '~> 3.2', '>= 3.0.3'
   gem 'bullet', '~> 7.0.3'
   gem 'byebug'
+  gem 'capybara'
   gem 'dotenv-rails', '~> 2.7.6'
   gem 'factory_bot_rails', '~> 5.1', '>= 5.1.1'
   gem 'pry-byebug', '~> 3.9', platform: :mri
   gem 'pry-rails', '~> 0.3.9'
   gem 'rspec_api_documentation', '~> 6.1.0'
   gem 'rspec-rails', '~> 4.1'
-  gem "capybara"
 end
 
 group :development do

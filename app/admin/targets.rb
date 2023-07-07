@@ -1,4 +1,4 @@
-ActiveAdmin.register Target do  
+ActiveAdmin.register Target do
   actions :index, :show
 
   controller do
@@ -10,13 +10,11 @@ ActiveAdmin.register Target do
   index do
     id_column
     column :title
-    column "Radius (m)"do |target|
-        target.radius
-    end
+    column 'Radius (m)', &:radius
     column :lat
     column :lng
     column :matched
-    column :user_name do |target| 
+    column :user_name do |target|
       target.user.first_name
     end
     column :topic_title do |target|
@@ -26,24 +24,22 @@ ActiveAdmin.register Target do
 
     actions
   end
-  
+
   show do
     attributes_table do
-    row :title
-    row "Radius (m)"do |target|
-        target.radius
+      row :title
+      row 'Radius (m)', &:radius
+      row :lat
+      row :lng
+      row :matched
+      row :user_name do |target|
+        target.user.first_name
+      end
+      row :topic_title do |target|
+        target.topic.name
+      end
+      row :created_at
+      row :updated_at
     end
-    row :lat
-    row :lng
-    row :matched
-    row :user_name do |target| 
-      target.user.first_name
-    end
-    row :topic_title do |target|
-      target.topic.name
-    end
-    row :created_at
-    row :updated_at
-  end
   end
 end

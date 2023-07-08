@@ -15,10 +15,10 @@ ActiveAdmin.register Target do
     column :lng
     column :matched
     column :user_name do |target|
-      target.user.first_name
+      TargetPresenter.new(target).user_name
     end
     column :topic_title do |target|
-      target.topic.name
+      TargetPresenter.new(target).topic_title
     end
     column :created_at
 
@@ -33,10 +33,10 @@ ActiveAdmin.register Target do
       row :lng
       row :matched
       row :user_name do |target|
-        target.user.first_name
+        TargetPresenter.new(target).user_name
       end
       row :topic_title do |target|
-        target.topic.name
+        TargetPresenter.new(target).topic_title
       end
       row :created_at
       row :updated_at

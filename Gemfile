@@ -15,20 +15,20 @@ gem 'devise_token_auth', '~> 1.2', git: 'https://github.com/lynndylanhurley/devi
 gem 'draper', '~> 4.0', '>= 4.0.1'
 gem 'exception_hunter', github: 'rootstrap/exception_hunter'
 gem 'jbuilder', '~> 2.10'
+gem 'kaminari'
 gem 'oj', '~> 3.9', '>= 3.9.2'
 gem 'pagy', '~> 4.0'
 gem 'pg', '~> 1.1', '>= 1.1.4'
 gem 'puma', '~> 5.6'
 gem 'pundit', '~> 2.1'
 gem 'rack-cors', '~> 1.0', '>= 1.0.6'
+gem 'rake'
 gem 'rgeo'
 gem 'rgeo-activerecord'
 gem 'sass-rails', '~> 6.0.0'
 gem 'sendgrid', '~> 1.2.4'
 gem 'sprockets', '~> 3.7.2'
 gem 'yaaf', '~> 2.2'
-gem 'kaminari'
-gem 'rake'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
@@ -60,9 +60,9 @@ group :development do
   gem 'reek', '~> 6.1', '>= 6.1.1'
   gem 'rubocop-rails', '~> 2.16', '>= 2.16.1', require: false
   gem 'rubocop-rootstrap', '~> 1.2'
+  gem 'rufus-scheduler'
   gem 'spring', '~> 4.0'
   gem 'wdm', '>= 0.1.0', platforms: [:x64_mingw]
-  gem 'rufus-scheduler'
 end
 
 group :test do

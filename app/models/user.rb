@@ -16,7 +16,6 @@
 #  first_name             :string           default("")
 #  last_name              :string           default("")
 #  username               :string           default("")
-#  plan_id                :integer          default(1), not null
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  provider               :string           default("email"), not null
@@ -26,7 +25,6 @@
 # Indexes
 #
 #  index_users_on_email                 (email) UNIQUE
-#  index_users_on_plan_id               (plan_id)
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #  index_users_on_uid_and_provider      (uid,provider) UNIQUE
 #
@@ -58,6 +56,10 @@ class User < ApplicationRecord
     return username if first_name.blank?
 
     "#{first_name} #{last_name}"
+  end
+
+  def target_limit_reached?
+    targets.count >= plan.target_limit && plan.target_limit != -1
   end
 
   private

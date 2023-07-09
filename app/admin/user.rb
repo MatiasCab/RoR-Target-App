@@ -1,5 +1,6 @@
 ActiveAdmin.register User do
-  permit_params :email, :first_name, :last_name, :username, :password, :password_confirmation, :plan_id
+  permit_params :email, :first_name, :last_name, :username, :password, :password_confirmation,
+                :plan_id
 
   controller do
     def scoped_collection

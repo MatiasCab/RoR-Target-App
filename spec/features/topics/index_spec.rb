@@ -1,7 +1,7 @@
 describe 'Admin see topics', type: :feature do
-  let!(:admin) { create(:admin_user) }
-  let!(:topics)      { create_list(:topic, 3) }
-  let(:first_topic)  { topics.first }
+  let!(:admin)        { create(:admin_user) }
+  let!(:topics)       { create_list(:topic, 3) }
+  let(:first_topic)   { topics.first }
   subject { visit admin_topics_path }
 
   before(:each) do

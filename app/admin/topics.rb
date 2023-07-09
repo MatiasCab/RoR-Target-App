@@ -15,7 +15,7 @@ ActiveAdmin.register Topic do
     column :image do |topic|
       image_tag topic.image, height: '25px'
     end
-    actionsgit
+    actions
   end
 
   show do

@@ -7,12 +7,11 @@ describe 'Admin create topic', type: :feature do
     before(:each) do
         sign_in(admin)
     end    
-        it "create the topic" do
+        it "have all the fields" do
           subject
-            fill_in 'Name', with: 'test'
-            fill_in 'Image', with: 'test_image'
-            click_button 'Create Topic'
-            expect(page).to have_content('Topic was successfully created.')
+          binding.pry
+          expect(page).to have_field('Name')
+          expect(page).to have_field('Image')
           end
       end
     

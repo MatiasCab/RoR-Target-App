@@ -9,7 +9,6 @@ describe 'Admin create topic', type: :feature do
     end    
         it "have all the fields" do
           subject
-          binding.pry
           expect(page).to have_field('Name')
           expect(page).to have_field('Image')
           end

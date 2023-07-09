@@ -2,8 +2,8 @@ require 'rufus-scheduler'
 
 scheduler = Rufus::Scheduler.new
 
-current_time = Time.now
-start_task_time = Time.new(current_time.year, current_time.month, current_time.day, 0, 0, 0)
+current_time = Time.zone.now
+start_task_time = Time.zone.local(current_time.year, current_time.month, current_time.day, 0, 0, 0)
 
 start_task_time += 1.day if current_time > start_task_time
 delay = start_task_time - current_time

@@ -15,12 +15,12 @@
 #  index_messages_on_user_id          (user_id)
 #
 class Message < ApplicationRecord
-    belongs_to :conversation
-    belongs_to :user
-    
-    validates :content, presence: true
+  belongs_to :conversation
+  belongs_to :user
 
-    PAGINATION_LIMIT = ENV.fetch('PAGINATION_LIMIT', '10').to_i
+  validates :content, presence: true
 
-    paginates_per PAGINATION_LIMIT
+  PAGINATION_LIMIT = ENV.fetch('PAGINATION_LIMIT', '10').to_i
+
+  paginates_per PAGINATION_LIMIT
 end

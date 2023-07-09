@@ -12,15 +12,19 @@ ActiveAdmin.register Topic do
   index do
     id_column
     column :name
-    column :image
-    actions
+    column :image do |topic|
+      image_tag topic.image, height: '25px'
+    end
+    actionsgit
   end
 
   show do
     attributes_table do
       row :id
       row :name
-      row :image
+      row :image do |topic|
+        image_tag topic.image, height: '25px'
+      end
     end
   end
 end

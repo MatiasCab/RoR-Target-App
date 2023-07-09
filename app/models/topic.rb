@@ -16,5 +16,5 @@ class Topic < ApplicationRecord
   has_many :targets, dependent: :destroy
   has_many :conversations, dependent: :destroy
   validates :name, presence: true, uniqueness: { case_sensitive: false }
-  validates :image, presence: true
+  validates :image, presence: true, format: { with: URI::DEFAULT_PARSER.make_regexp }
 end

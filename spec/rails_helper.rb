@@ -6,7 +6,7 @@ SimpleCov.start 'rails' do
   add_group 'Forms', 'app/forms'
   add_group 'Policies', 'app/policies'
   add_group 'Presenters', 'app/presenters'
-  #add_filter 'app/admin' #FIXME SACARLA
+  # add_filter 'app/admin' #FIXME SACARLA
   add_filter 'config'
   add_filter 'spec'
 end

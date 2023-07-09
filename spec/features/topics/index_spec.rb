@@ -12,7 +12,7 @@ describe 'Admin see topics', type: :feature do
     subject
     aggregate_failures do
       expect(page).to have_content(first_topic.name)
-      expect(page).to have_content(first_topic.image)
+      expect(page).to have_css("img[src='#{first_topic.image}']")
     end
   end
 end

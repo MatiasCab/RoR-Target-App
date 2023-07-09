@@ -16,12 +16,8 @@ ActiveAdmin.register Target do
     column :lat
     column :lng
     column :matched
-    column :user_name do |target|
-      TargetPresenter.new(target).user_name
-    end
-    column :topic_title do |target|
-      TargetPresenter.new(target).topic_title
-    end
+    column :user
+    column :topic
     column :created_at
 
     actions
@@ -34,12 +30,8 @@ ActiveAdmin.register Target do
       row :lat
       row :lng
       row :matched
-      row :user_name do |target|
-        TargetPresenter.new(target).user_name
-      end
-      row :topic_title do |target|
-        TargetPresenter.new(target).topic_title
-      end
+      row :user
+      row :topic
       row :created_at
       row :updated_at
     end

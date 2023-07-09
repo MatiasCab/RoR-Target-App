@@ -12,7 +12,9 @@ ActiveAdmin.register Topic do
   index do
     id_column
     column :name
-    column :image
+    column :image do |topic|
+      image_tag topic.image, height: '25px'
+    end
     actions
   end
 
@@ -20,7 +22,9 @@ ActiveAdmin.register Topic do
     attributes_table do
       row :id
       row :name
-      row :image
+      row :image do |topic|
+        image_tag topic.image, height: '25px'
+      end
     end
   end
 end

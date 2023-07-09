@@ -16,6 +16,7 @@
 #  first_name             :string           default("")
 #  last_name              :string           default("")
 #  username               :string           default("")
+#  plan_id                :integer          default(1), not null
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  provider               :string           default("email"), not null
@@ -25,6 +26,7 @@
 # Indexes
 #
 #  index_users_on_email                 (email) UNIQUE
+#  index_users_on_plan_id               (plan_id)
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #  index_users_on_uid_and_provider      (uid,provider) UNIQUE
 #
@@ -37,5 +39,6 @@ FactoryBot.define do
     first_name { Faker::Name.unique.name }
     last_name  { Faker::Name.unique.last_name }
     uid        { Faker::Internet.uuid }
+    plan
   end
 end

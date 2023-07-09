@@ -1,6 +1,9 @@
 AdminUser.create!(email: 'admin@example.com', password: 'password') if Rails.env.development?
 Setting.create_or_find_by!(key: 'min_version', value: '0.0')
 
+Plan.create!(name: 'Basic', target_limit: 3)
+Plan.create!(name: 'Unlimited Platinium', target_limit: -1)
+
 user1 = User.create!(first_name: 'Matias', last_name: 'Cabrera', email: 'matias@gmail.com',
                      password: '12345678')
 user2 = User.create!(first_name: 'User_2', last_name: 'User_2', email: 'user_2@gmail.com',

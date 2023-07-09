@@ -16,6 +16,7 @@ describe 'Admin create user', type: :feature do
     expect(page).to have_field('Password')
     expect(page).to have_field('Password confirmation')
   end
+<<<<<<< HEAD
   # it "create the user" do
   #     subject
   #     fill_in 'Email', with: 'test@example.com'
@@ -32,4 +33,6 @@ describe 'Admin create user', type: :feature do
   #     expect(new_user.last_name).to eq('test')
   #     expect(new_user.username).to eq('test')s
   #     end
+=======
+>>>>>>> 6bc1ac39e183be707ad8ac55855525b820a118c8
 end

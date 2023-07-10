@@ -1,5 +1,5 @@
 RSpec.describe 'Admin Users Edit' do
-  let!(:admin) { create(:admin_user) }
+  let!(:admin)    { create(:admin_user) }
   let!(:user)     { create(:user) }
   let!(:new_plan) { create(:plan) }
   subject { visit edit_admin_user_path(user.id) }

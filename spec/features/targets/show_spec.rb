@@ -27,7 +27,7 @@ describe 'Admin view target', type: :feature do
       expect(page).to have_content(first_target.radius)
       expect(page).to have_content(first_target.lat)
       expect(page).to have_content(first_target.lng)
-      expect(page).to have_content(first_target.matched ? 'Yes' : 'No') # FIXME
+      expect(page).to have_content(first_target.matched ? 'Yes' : 'No')
       expect(page).to have_content(first_target.user.first_name)
       expect(page).to have_content(first_target.topic.name)
       expect(page).to have_content(first_target.created_at.strftime('%B %d, %Y %H:%M'))

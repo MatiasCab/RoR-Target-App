@@ -1,6 +1,8 @@
 ---
 en:
   active_admin:
+    targets_headers:
+      radius: Radius (m)
     dashboard: Main page
     dashboard_welcome:
       call_to_action: Actions

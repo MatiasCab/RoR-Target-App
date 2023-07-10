@@ -1,5 +1,5 @@
 describe 'Admin view target', type: :feature do
-  let!(:admin) { create(:admin_user) }
+  let!(:admin)        { create(:admin_user) }
   let!(:targets)      { create_list(:target, 3) }
   let(:first_target)  { targets.first }
   subject { visit admin_target_path(first_target.id) }

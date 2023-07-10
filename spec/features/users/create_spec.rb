@@ -1,5 +1,5 @@
 describe 'Admin create user', type: :feature do
-  let!(:admin) { create(:admin_user) }
+  let!(:admin)      { create(:admin_user) }
   let!(:users)      { create_list(:user, 3) }
   let(:first_user)  { users.first }
   subject { visit new_admin_user_path }

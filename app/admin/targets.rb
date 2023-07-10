@@ -7,8 +7,6 @@ ActiveAdmin.register Target do
     end
   end
 
-  filter :topic
-
   index do
     id_column
     column :title

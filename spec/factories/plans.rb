@@ -11,6 +11,6 @@
 FactoryBot.define do
   factory :plan do
     name          { Faker::Name.name }
-    target_limit  { Faker::Number.between(from: 1, to: 100) }
+    target_limit  { Faker::Number.between(from: 3, to: 100) }
   end
 end

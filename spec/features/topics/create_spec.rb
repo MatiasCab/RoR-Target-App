@@ -7,6 +7,7 @@ describe 'Admin create topic', type: :feature do
   before(:each) do
     sign_in(admin)
   end
+
   it 'have all the fields' do
     subject
     expect(page).to have_field('Name')

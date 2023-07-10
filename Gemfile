@@ -39,7 +39,8 @@ gem 'yaaf', '~> 2.2'
 group :development, :test do
   gem 'annotate', '~> 3.2', '>= 3.0.3'
   gem 'bullet', '~> 7.0.3'
-  gem 'byebug'
+  gem 'byebug', '~> 11.0'
+  gem 'capybara', '~> 3.39.0'
   gem 'dotenv-rails', '~> 2.7.6'
   gem 'factory_bot_rails', '~> 5.1', '>= 5.1.1'
   gem 'pry-byebug', '~> 3.9', platform: :mri

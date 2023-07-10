@@ -22,8 +22,8 @@ FactoryBot.define do
   factory :target do
     title       { Faker::Name.name }
     radius      { Faker::Number.between(from: 1.0, to: 600_000.0).round(2) }
-    lat         { Faker::Address.latitude }
-    lng         { Faker::Address.longitude }
+    lat         { Faker::Address.latitude.to_f.round(10) }
+    lng         { Faker::Address.longitude.to_f.round(10) }
     user
     topic
   end

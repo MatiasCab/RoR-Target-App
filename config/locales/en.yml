@@ -5,6 +5,8 @@ en:
     dashboard_welcome:
       call_to_action: Actions
       welcome: Welcome to your first admin
+    target_headers:
+      radius: Radius (m)
   api:
     errors:
       invalid_content_type: Invalid content type header

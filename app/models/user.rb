@@ -61,7 +61,8 @@ class User < ApplicationRecord
   end
 
   def target_limit_reached?
-    targets.count >= plan.target_limit && plan.target_limit != -1
+    target_limit = plan.target_limit
+    targets.count >= target_limit && target_limit != -1
   end
 
   private

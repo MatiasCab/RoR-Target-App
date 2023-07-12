@@ -7,12 +7,10 @@ ActiveAdmin.register Target do
     end
   end
 
-  filter :topic
-
   index do
     id_column
     column :title
-    column 'Radius (m)', &:radius
+    column I18n.t('active_admin.target_headers.radius'), &:radius
     column :lat
     column :lng
     column :matched
@@ -23,10 +21,12 @@ ActiveAdmin.register Target do
     actions
   end
 
+  filter :topic
+
   show do
     attributes_table do
       row :title
-      row 'Radius (m)', &:radius
+      row I18n.t('active_admin.target_headers.radius'), &:radius
       row :lat
       row :lng
       row :matched

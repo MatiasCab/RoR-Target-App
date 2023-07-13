@@ -1,5 +1,12 @@
 ActiveAdmin.register User do
-  permit_params :email, :first_name, :last_name, :username, :password, :password_confirmation
+  permit_params :email, :first_name, :last_name, :username, :password, :password_confirmation,
+                :plan_id
+
+  controller do
+    def scoped_collection
+      super.includes(:plan)
+    end
+  end
 
   form do |f|
     f.inputs 'Details' do
@@ -7,6 +14,7 @@ ActiveAdmin.register User do
       f.input :first_name
       f.input :last_name
       f.input :username
+      f.input :plan, as: :select, collection: Plan.all
 
       if f.object.new_record?
         f.input :password
@@ -24,6 +32,7 @@ ActiveAdmin.register User do
     column :first_name
     column :last_name
     column :username
+    column :plan
     column :sign_in_count
     column :created_at
     column :updated_at
@@ -36,6 +45,7 @@ ActiveAdmin.register User do
   filter :username
   filter :first_name
   filter :last_name
+  filter :plan
   filter :created_at
   filter :updated_at
 
@@ -46,6 +56,7 @@ ActiveAdmin.register User do
       row :first_name
       row :last_name
       row :username
+      row :plan
       row :sign_in_count
       row :created_at
       row :updated_at

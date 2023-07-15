@@ -16,6 +16,7 @@
 #  first_name             :string           default("")
 #  last_name              :string           default("")
 #  username               :string           default("")
+#  plan_id                :integer          not null
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  provider               :string           default("email"), not null
@@ -25,6 +26,7 @@
 # Indexes
 #
 #  index_users_on_email                 (email) UNIQUE
+#  index_users_on_plan_id               (plan_id)
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #  index_users_on_uid_and_provider      (uid,provider) UNIQUE
 #
@@ -36,6 +38,8 @@ class User < ApplicationRecord
          :recoverable, :trackable, :validatable
   include DeviseTokenAuth::Concerns::User
 
+  belongs_to :plan
+
   has_many :targets, dependent: :destroy
   has_many :conversations, through: :targets, dependent: :destroy
 
@@ -44,9 +48,11 @@ class User < ApplicationRecord
   before_validation :init_uid
 
   def self.from_social_provider(provider, user_params)
+    plan = Plan.find_by(name: 'Basic')
     where(provider:, uid: user_params['id']).first_or_create! do |user|
       user.password = Devise.friendly_token[0, 20]
       user.assign_attributes user_params.except('id')
+      user.plan_id = plan.id
     end
   end
 
@@ -54,6 +60,11 @@ class User < ApplicationRecord
     return username if first_name.blank?
 
     "#{first_name} #{last_name}"
+  end
+
+  def target_limit_reached?
+    target_limit = plan.target_limit
+    targets.count >= target_limit && target_limit != -1
   end
 
   private

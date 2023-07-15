@@ -55,7 +55,7 @@ class Target < ApplicationRecord
   private
 
   def max_target_amount_reached
-    return if user.targets.count < MAX_TARGETS_AMOUNT
+    return unless user.target_limit_reached?
 
     errors.add(:user,
                I18n.t('api.errors.maximum_targets_reached'))

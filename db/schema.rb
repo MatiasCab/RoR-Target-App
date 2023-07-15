@@ -131,6 +131,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_10_160622) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
+  create_table "plans", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "target_limit", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "settings", force: :cascade do |t|
     t.string "key", null: false
     t.string "value"
@@ -176,12 +183,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_10_160622) do
     t.string "first_name", default: ""
     t.string "last_name", default: ""
     t.string "username", default: ""
+    t.integer "plan_id", null: false
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
     t.string "provider", default: "email", null: false
     t.string "uid", default: "", null: false
     t.json "tokens"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["plan_id"], name: "index_users_on_plan_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
@@ -196,4 +205,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_10_160622) do
   add_foreign_key "messages", "users"
   add_foreign_key "targets", "topics"
   add_foreign_key "targets", "users"
+  add_foreign_key "users", "plans"
 end

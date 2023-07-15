@@ -6,6 +6,7 @@ resource 'Users' do
   header 'client', :client_header
   header 'uid', :uid_header
 
+  let!(:plan) { create(:plan, name: 'Basic') }
   let(:user) { create(:user) }
 
   route 'api/v1/users', 'Create User' do

@@ -1,4 +1,5 @@
 describe 'POST api/v1/users/', type: :request do
+  let!(:plan)           { create(:plan, name: 'Basic') }
   let(:user)            { User.last }
   let(:failed_response) { 422 }
 

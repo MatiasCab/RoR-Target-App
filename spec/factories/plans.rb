@@ -10,8 +10,6 @@
 #
 FactoryBot.define do
   factory :plan do
-    sequence(:id) { |n| n + 2 }
-
     name          { Faker::Name.name }
     target_limit  { Faker::Number.between(from: 3, to: 100) }
   end

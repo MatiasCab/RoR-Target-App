@@ -35,7 +35,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       t.string   :last_name,              default: ''
       t.string   :username,               default: ''
 
-      t.references :plan, foreign_key: true, null: false, default: 1
+      t.references :plan, foreign_key: true, null: false
 
       t.timestamps null: false
     end

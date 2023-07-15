@@ -16,7 +16,7 @@
 #  first_name             :string           default("")
 #  last_name              :string           default("")
 #  username               :string           default("")
-#  plan_id                :integer          default(1), not null
+#  plan_id                :integer          not null
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  provider               :string           default("email"), not null
@@ -32,6 +32,7 @@
 #
 
 describe User do
+  let!(:plan) { create(:plan, name: 'Basic') }
   describe 'validations' do
     subject { build :user }
     it { is_expected.to validate_uniqueness_of(:uid).scoped_to(:provider) }

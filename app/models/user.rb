@@ -16,7 +16,7 @@
 #  first_name             :string           default("")
 #  last_name              :string           default("")
 #  username               :string           default("")
-#  plan_id                :integer          default(1), not null
+#  plan_id                :integer          not null
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  provider               :string           default("email"), not null
@@ -48,9 +48,11 @@ class User < ApplicationRecord
   before_validation :init_uid
 
   def self.from_social_provider(provider, user_params)
+    plan = Plan.find_by(name: 'Basic')
     where(provider:, uid: user_params['id']).first_or_create! do |user|
       user.password = Devise.friendly_token[0, 20]
       user.assign_attributes user_params.except('id')
+      user.plan_id = plan.id
     end
   end
 

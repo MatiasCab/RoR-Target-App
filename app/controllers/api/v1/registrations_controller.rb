@@ -3,12 +3,12 @@ module Api
     class RegistrationsController < DeviseTokenAuth::RegistrationsController
       protect_from_forgery with: :exception, unless: :json_request?
       include Api::Concerns::ActAsApiRequest
+      skip_before_action :verify_authenticity_token
 
       private
 
       def sign_up_params
-        params.require(:user).permit(:email, :password, :password_confirmation,
-                                     :username, :first_name, :last_name)
+        CreateUserService.new(params).sign_up_info
       end
 
       def render_create_success

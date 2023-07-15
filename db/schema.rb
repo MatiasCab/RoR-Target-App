@@ -183,7 +183,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_10_160622) do
     t.string "first_name", default: ""
     t.string "last_name", default: ""
     t.string "username", default: ""
-    t.integer "plan_id", default: 1, null: false
+    t.integer "plan_id", null: false
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
     t.string "provider", default: "email", null: false

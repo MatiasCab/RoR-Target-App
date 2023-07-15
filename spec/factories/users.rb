@@ -16,7 +16,7 @@
 #  first_name             :string           default("")
 #  last_name              :string           default("")
 #  username               :string           default("")
-#  plan_id                :integer          default(1), not null
+#  plan_id                :integer          not null
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  provider               :string           default("email"), not null
@@ -39,6 +39,13 @@ FactoryBot.define do
     first_name { Faker::Name.unique.name }
     last_name  { Faker::Name.unique.last_name }
     uid        { Faker::Internet.uuid }
-    plan
+
+    transient do
+      shared_plan { create(:plan) }
+    end
+
+    after(:build) do |user, evaluator|
+      user.plan = evaluator.shared_plan
+    end
   end
 end

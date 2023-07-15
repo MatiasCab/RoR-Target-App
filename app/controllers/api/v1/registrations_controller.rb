@@ -3,7 +3,6 @@ module Api
     class RegistrationsController < DeviseTokenAuth::RegistrationsController
       protect_from_forgery with: :exception, unless: :json_request?
       include Api::Concerns::ActAsApiRequest
-      skip_before_action :verify_authenticity_token
 
       private
 
